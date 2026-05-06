@@ -7,7 +7,9 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private UIHandler uiHandler;
 
+    [Header("Movement")]
     public float speed;
     private Rigidbody2D rb;
     public float dashSpeed = 20f;
@@ -19,17 +21,27 @@ public class Player : MonoBehaviour
     float xBounds = 6.2f;
     float yBounds = 4.5f;
 
+    [Header("Health & Invincibility")]
     public int health;
     public int maxHealth;
     public bool dead;
     [SerializeField] private float mercyInvincibilityTime;
     private bool mercyInvincibility;
 
+    [Header("Projectiles & Firing")]
     [SerializeField] private UnityEngine.Transform projectileSpawnpoint;
     [SerializeField] private GameObject basicProjectile;
     [SerializeField] private float basicProjectileSpeed;
     [SerializeField] private float primaryFireDelay;
     private bool primaryFireOnDelay;
+
+    [Header("Damage & Death")]
+    [SerializeField] private SpriteRenderer playerSprite;
+    [SerializeField] private Color defaultColor;
+    [SerializeField] private Color damageColor;
+    [SerializeField] private ParticleSystem deathParticles;
+
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -81,24 +93,31 @@ public class Player : MonoBehaviour
         isDashing = false;
         trailRenderer.emitting = false;
         yield return new WaitForSeconds(dashCooldown);
-        canDash= true;  
+        canDash = true;  
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!dead && !mercyInvincibility)
+        if (!dead)
         {
-            if (collision.gameObject.CompareTag("Enemy"))
+            if (!mercyInvincibility)
             {
-                TakeDamage(collision.gameObject.GetComponent<BasicEnemy>().contactDamage);
+                if (collision.gameObject.CompareTag("Enemy"))
+                {
+                    TakeDamage(collision.gameObject.GetComponent<BasicEnemy>().contactDamage);
+                }
+                if (collision.gameObject.CompareTag("EnemyProjectile"))
+                {
+                    var projectileScript = collision.gameObject.GetComponent<BasicProjectile>();
+                    TakeDamage(projectileScript.damage);
+                    if (projectileScript.destroyOnContact) Destroy(collision.gameObject);
+                }
             }
-            if (collision.gameObject.CompareTag("EnemyProjectile"))
+            if (collision.gameObject.CompareTag("Powerup"))
             {
-                var projectileScript = collision.gameObject.GetComponent<BasicProjectile>();
-                TakeDamage(projectileScript.damage);
-                if (projectileScript.destroyOnContact) Destroy(collision.gameObject); 
+                PowerupCollect(collision.gameObject.GetComponent<PowerupFunction>());
+                Destroy(collision.gameObject);
             }
-
         }
     }
 
@@ -131,17 +150,24 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
     }
 
+    #region "Damage & Death"
+
     void TakeDamage(int damage)
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
 
-        Debug.Log(health);
+        uiHandler.UpdateHealth();
 
-        if (health == 0) Destroy(gameObject);
+        if (health == 0)
+        {
+            ParticleCheck();
+            Destroy(gameObject);
+        }
         else
         {
-            StartCoroutine("MercyInvincibility");
+            StartCoroutine(MercyInvincibility());
+            StartCoroutine(DamageStrobeEffect());
         }
     }
 
@@ -153,6 +179,30 @@ public class Player : MonoBehaviour
 
         mercyInvincibility = false;
     }
+    IEnumerator DamageStrobeEffect()
+    {
+        playerSprite.color = damageColor;
+
+        yield return new WaitForSeconds(0.1f);
+
+        playerSprite.color = defaultColor;
+
+        yield return new WaitForSeconds(0.1f);
+
+        if (mercyInvincibility) StartCoroutine(DamageStrobeEffect());
+    }
+    void ParticleCheck()
+    {
+        if (deathParticles != null)
+        {
+            deathParticles.transform.parent = null;
+            deathParticles.Play();
+
+            Destroy(deathParticles.gameObject, deathParticles.main.duration);
+        }
+    }
+
+    #endregion
 
     void PrimaryFire()
     {
@@ -173,6 +223,16 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(primaryFireDelay);
 
         primaryFireOnDelay = false;
+    }
+
+    void PowerupCollect(PowerupFunction powerup)
+    {
+        if (powerup.powerupType == PowerupFunction.PowerupType.HealthUp)
+        {
+            health += 25;
+            health = Mathf.Clamp(health, 0, maxHealth);
+            uiHandler.UpdateHealth();
+        }
     }
 
 }
