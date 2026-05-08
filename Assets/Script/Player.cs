@@ -20,6 +20,12 @@ public class Player : MonoBehaviour
     TrailRenderer trailRenderer;
     float xBounds = 6.2f;
     float yBounds = 4.5f;
+    private Animator anim;
+
+    [Header("Switch modes")]
+    private bool isOnAirplaneMode=false;
+    public Sprite airplaneSprite;
+    public Sprite emailSprite;
 
     [Header("Health & Invincibility")]
     public int health;
@@ -50,11 +56,15 @@ public class Player : MonoBehaviour
         trailRenderer = GetComponent<TrailRenderer>();
         rb = GetComponent<Rigidbody2D>();
         health = maxHealth;
+        anim = GetComponent<Animator>();
+        playerSprite = GetComponent<SpriteRenderer>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(isOnAirplaneMode);
         if (isDashing)
         {
             return;
@@ -63,6 +73,11 @@ public class Player : MonoBehaviour
         Move();
         PlayerBounds();
         RotateToMousePosition();
+        TurnIntoAirplane();
+        if (!isOnAirplaneMode)
+        {
+            return;
+        }
         PrimaryFire();
     }
     private void Move()
@@ -94,6 +109,25 @@ public class Player : MonoBehaviour
         trailRenderer.emitting = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;  
+    }
+    private void TurnIntoAirplane()
+    {
+        if (Input.GetKeyDown(KeyCode.E) )
+        {
+            if (isOnAirplaneMode==false)
+            {
+                isOnAirplaneMode = true;
+                anim.SetTrigger("TurnIntoAirplane");
+                playerSprite.sprite = airplaneSprite;
+            }
+            else
+            {
+                isOnAirplaneMode = false;
+                anim.SetTrigger("TurnIntoEmail");
+                playerSprite.sprite = emailSprite;
+            }
+        }
+       
     }
 
     private void OnTriggerStay2D(Collider2D collision)
