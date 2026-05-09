@@ -655,6 +655,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 676710794474671661, guid: 0ca257d6d2143ed4ca2d1ee01822ae2b, type: 3}
+      propertyPath: emailSprite
+      value: 
+      objectReference: {fileID: -2191989549806839966, guid: 55517676c01df844aa3629b87fc2ea65, type: 3}
+    - target: {fileID: 676710794474671661, guid: 0ca257d6d2143ed4ca2d1ee01822ae2b, type: 3}
+      propertyPath: airplaneSprite
+      value: 
+      objectReference: {fileID: 8624238241974849956, guid: 021a64dc202d40b4d8bfac8339f6f55b, type: 3}
     - target: {fileID: 5398096899135450999, guid: 0ca257d6d2143ed4ca2d1ee01822ae2b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -712,6 +720,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 710415897998019873, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3010604413218721695, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.35
+      objectReference: {fileID: 0}
     - target: {fileID: 4095830929882689780, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -752,21 +768,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4754313219663140344, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.35
+      objectReference: {fileID: 0}
     - target: {fileID: 4838998005109363277, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
-    - target: {fileID: 5509989754606765508, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
-      propertyPath: spawnableEnemies.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5509989754606765508, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
-      propertyPath: spawnableEnemies.Array.data[2].enemy
-      value: 
-      objectReference: {fileID: 609294104034626828, guid: 8d9505480a0d5a748b68e0ccd7a46dd8, type: 3}
-    - target: {fileID: 5509989754606765508, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
-      propertyPath: spawnableEnemies.Array.data[2].spawnChance
-      value: 20
+    - target: {fileID: 7555064472483089697, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

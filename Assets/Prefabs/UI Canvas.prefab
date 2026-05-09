@@ -267,4 +267,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa285868f8e6e14e8dce167a1f0c040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIHandler
+  player: {fileID: 0}
   healthFill: {fileID: 1592227173327618309}

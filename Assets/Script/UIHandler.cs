@@ -9,7 +9,7 @@ public class UIHandler : MonoBehaviour
 
     public void UpdateHealth()
     {
-        healthFill.fillAmount = (player.health / player.maxHealth);
+        healthFill.fillAmount = (float)player.health / (float)player.maxHealth;
     }
     
 }

@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &31848986050105788
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 265234982252116062}
-  m_Layer: 0
-  m_Name: ProjectileSpawnpoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &265234982252116062
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31848986050105788}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.42, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4041402310090093447}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &609294104034626828
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4041402310090093447}
   - component: {fileID: 3651046124054836591}
-  - component: {fileID: -3578460518133802853}
   - component: {fileID: -5828677793135976147}
   - component: {fileID: 9048080724569320271}
+  - component: {fileID: 2649937514016745364}
   m_Layer: 0
-  m_Name: Basic Enemy
+  m_Name: Wave Projectile Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,8 +33,10 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 265234982252116062}
   - {fileID: 446392925848234291}
+  - {fileID: 1155908745979288316}
+  - {fileID: 6146416451945651258}
+  - {fileID: 7415092151258496435}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3651046124054836591
@@ -118,7 +89,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2135585597343286014, guid: eed45a33cd08446c8b88325cf82fc52f, type: 3}
-  m_Color: {r: 0.8773585, g: 0.36084908, b: 0, a: 1}
+  m_Color: {r: 0.050980397, g: 0.8352942, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -127,41 +98,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &-3578460518133802853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 609294104034626828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3243548fe5e31574faae4d139d58f928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
-  health: 0
-  maxHealth: 40
-  fires: 1
-  contactDamage: 15
-  fireDelay: 1
-  projectile: {fileID: 609294104034626828, guid: 16fd54dc81af22b458e8b81b587765ad, type: 3}
-  projectileSpeed: 5
-  projectileSpawnpoint: {fileID: 265234982252116062}
-  maxDistanceFromPlayer: 3
-  moveSpeed: 0.002
-  enemySprite: {fileID: 3651046124054836591}
-  defaultColor: {r: 0.87843144, g: 0.35686275, b: 0, a: 1}
-  damageColor: {r: 0.7264151, g: 0.29510614, b: 0, a: 1}
-  deathParticles: {fileID: 1533935279161675702}
-  droppedPowerups:
-  - powerup: {fileID: 3021733973201317891, guid: 02cbaf5d9175fe7458b05b08a0847abb, type: 3}
-    dropChance: 5
-  - powerup: {fileID: 3021733973201317891, guid: 50853f22f35f63443873fc0925c5b5dd, type: 3}
-    dropChance: 15
-  - powerup: {fileID: 3021733973201317891, guid: d43930df955629543a3f39c2f4cfe2a2, type: 3}
-    dropChance: 5
-  - powerup: {fileID: 3021733973201317891, guid: b78644cc9bd3eae4a8e1e1bd6f1f4538, type: 3}
-    dropChance: 10
 --- !u!50 &-5828677793135976147
 Rigidbody2D:
   serializedVersion: 5
@@ -225,6 +161,136 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &2649937514016745364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609294104034626828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140990a47ff91f946a7b6de90944e3b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooterEnemy
+  player: {fileID: 0}
+  health: 0
+  maxHealth: 60
+  fires: 1
+  contactDamage: 20
+  fireDelay: 3
+  projectile: {fileID: 609294104034626828, guid: 16fd54dc81af22b458e8b81b587765ad, type: 3}
+  projectileSpeed: 5
+  projectileSpawnpoint: {fileID: 0}
+  playerTrackRot: 0
+  maxDistanceFromPlayer: 0
+  moveSpeed: 0
+  enemySprite: {fileID: 3651046124054836591}
+  defaultColor: {r: 0.050980397, g: 0.8352942, b: 1, a: 1}
+  damageColor: {r: 0, g: 0.64712316, b: 0.7830189, a: 1}
+  deathParticles: {fileID: 1533935279161675702}
+  droppedPowerups:
+  - powerup: {fileID: 3021733973201317891, guid: d43930df955629543a3f39c2f4cfe2a2, type: 3}
+    dropChance: 20
+  - powerup: {fileID: 3021733973201317891, guid: 50853f22f35f63443873fc0925c5b5dd, type: 3}
+    dropChance: 10
+  waveProjectileTransforms:
+  - {fileID: 1155908745979288316}
+  - {fileID: 6146416451945651258}
+  - {fileID: 7415092151258496435}
+--- !u!1 &7279358302488345772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1155908745979288316}
+  m_Layer: 0
+  m_Name: ProjectileSpawn1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1155908745979288316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7279358302488345772}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4041402310090093447}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7700357778465160362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7415092151258496435}
+  m_Layer: 0
+  m_Name: ProjectileSpawn3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7415092151258496435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700357778465160362}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
+  m_LocalPosition: {x: 0.1, y: 0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4041402310090093447}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
+--- !u!1 &8546987215676535201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6146416451945651258}
+  m_Layer: 0
+  m_Name: ProjectileSpawn2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6146416451945651258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8546987215676535201}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
+  m_LocalPosition: {x: -0.10000001, y: 0.24999999, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4041402310090093447}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
 --- !u!1001 &658805775683317949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -272,6 +338,18 @@ PrefabInstance:
     - target: {fileID: 1086885235489642894, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2048344389290000139, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2048344389290000139, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8352942
+      objectReference: {fileID: 0}
+    - target: {fileID: 2048344389290000139, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.050980397
       objectReference: {fileID: 0}
     - target: {fileID: 3924540651389422373, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
       propertyPath: m_Name

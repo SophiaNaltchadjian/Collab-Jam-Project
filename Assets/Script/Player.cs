@@ -28,8 +28,8 @@ public class Player : MonoBehaviour
     public Sprite emailSprite;
 
     [Header("Health & Invincibility")]
-    public int health;
-    public int maxHealth;
+    public int health = 100;
+    public int maxHealth = 100;
     public bool dead;
     [SerializeField] private float mercyInvincibilityTime;
     private bool mercyInvincibility;
@@ -47,6 +47,13 @@ public class Player : MonoBehaviour
     [SerializeField] private Color damageColor;
     [SerializeField] private ParticleSystem deathParticles;
 
+    [Header("Powerups")]
+    bool shielded;
+    float damageMod = 1;
+    float speedMod = 1;
+    float shieldDuration;
+    float damageUpDuration;
+    float speedUpDuration;
 
 
 
@@ -64,14 +71,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isOnAirplaneMode);
+        PowerupDurationCheck();
+        PlayerBounds();
+
         if (isDashing)
         {
             return;
         }
         Dash();
         Move();
-        PlayerBounds();
         RotateToMousePosition();
         TurnIntoAirplane();
         if (!isOnAirplaneMode)
@@ -82,8 +90,8 @@ public class Player : MonoBehaviour
     }
     private void Move()
     {
-        Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
-        transform.position += movement * speed * Time.deltaTime;
+        Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0); 
+        transform.position += (movement * speed * Time.deltaTime) * speedMod;
     }
     private void Dash()
     {
@@ -188,7 +196,8 @@ public class Player : MonoBehaviour
 
     void TakeDamage(int damage)
     {
-        health -= damage;
+        if (shielded) health -= (int)(damage / 2);
+        else health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
 
         uiHandler.UpdateHealth();
@@ -245,6 +254,7 @@ public class Player : MonoBehaviour
             var shotProjectile = Instantiate(basicProjectile);
             shotProjectile.transform.position = projectileSpawnpoint.position;
             shotProjectile.transform.rotation = projectileSpawnpoint.rotation;
+            shotProjectile.GetComponent<BasicProjectile>().damage = (int)(shotProjectile.GetComponent<BasicProjectile>().damage * damageMod);
             shotProjectile.GetComponent<Rigidbody2D>().AddForce(transform.up * basicProjectileSpeed, ForceMode2D.Impulse);
 
             StartCoroutine("FireDelay");
@@ -266,6 +276,55 @@ public class Player : MonoBehaviour
             health += 25;
             health = Mathf.Clamp(health, 0, maxHealth);
             uiHandler.UpdateHealth();
+        }
+        else if (powerup.powerupType == PowerupFunction.PowerupType.Shield)
+        {
+            shielded = true;
+            shieldDuration = 10f;
+        }
+        else if (powerup.powerupType == PowerupFunction.PowerupType.DamageUp)
+        {
+            if (damageUpDuration > 0)
+            {
+                damageUpDuration = 10f;
+                return;
+            }
+
+            damageMod += 0.5f;
+            damageUpDuration = 10f;
+        }
+        else if (powerup.powerupType == PowerupFunction.PowerupType.SpeedUp)
+        {
+            if (speedUpDuration > 0)
+            {
+                speedUpDuration = 10f;
+                return;
+            }
+
+            speedMod += 0.5f;
+            speedUpDuration = 10f;
+        }
+    }
+
+    void PowerupDurationCheck()
+    {
+        if (shielded)
+        {
+            shieldDuration -= Time.deltaTime;
+            shieldDuration = Mathf.Clamp(shieldDuration, 0, 30);
+            if (shieldDuration == 0) shielded=false;
+        }
+        if (damageUpDuration > 0)
+        {
+            damageUpDuration -= Time.deltaTime;
+            damageUpDuration = Mathf.Clamp(damageUpDuration, 0, 30);
+            if (damageUpDuration == 0) damageMod -= 0.5f;
+        }
+        if (speedUpDuration > 0)
+        {
+            speedUpDuration -= Time.deltaTime;
+            speedUpDuration = Mathf.Clamp(speedUpDuration, 0, 30);
+            if (speedUpDuration == 0) speedMod -= 0.5f;
         }
     }
 
