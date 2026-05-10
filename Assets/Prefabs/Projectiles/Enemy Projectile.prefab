@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile
   damage: 20
+  speed: 5
   destroyOnContact: 1
 --- !u!58 &-5901582233498902426
 CircleCollider2D:

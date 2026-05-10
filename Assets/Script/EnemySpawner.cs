@@ -10,13 +10,18 @@ public class EnemySpawner : MonoBehaviour
 
     public List<SpawnedEnemy> spawnableEnemies = new();
 
+    private Player player;
+
     private void Start()
     {
+        player = FindAnyObjectByType<Player>();
         InvokeRepeating("EnemySpawn", 2.5f, 2.5f);
     }
 
     void EnemySpawn()
     {
+        if (player == null) return;
+
         var enemyToSpawn = SpawnedEnemyCheck();
         if (enemyToSpawn == null) return;
 

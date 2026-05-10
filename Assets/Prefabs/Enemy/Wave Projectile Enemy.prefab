@@ -155,7 +155,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -180,7 +180,6 @@ MonoBehaviour:
   contactDamage: 20
   fireDelay: 3
   projectile: {fileID: 609294104034626828, guid: 16fd54dc81af22b458e8b81b587765ad, type: 3}
-  projectileSpeed: 5
   projectileSpawnpoint: {fileID: 0}
   playerTrackRot: 0
   maxDistanceFromPlayer: 0

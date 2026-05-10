@@ -15,7 +15,6 @@ public class EnemyBase : MonoBehaviour
     public int contactDamage;
     public float fireDelay;
     public GameObject projectile;
-    public float projectileSpeed;
     public Transform projectileSpawnpoint;
 
     [Header("Movement")]
@@ -45,14 +44,13 @@ public class EnemyBase : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerProjectile"))
         {
             var projectileScript = collision.gameObject.GetComponent<BasicProjectile>();
-            TakeDamage(projectileScript.damage);
-            if (projectileScript.destroyOnContact) Destroy(collision.gameObject);
+            projectileScript.ProjectileImpact(gameObject);
         }
 
 
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
@@ -131,7 +129,6 @@ public class EnemyBase : MonoBehaviour
         var shotProjectile = Instantiate(projectile);
         shotProjectile.transform.position = projectileSpawnpoint.position;
         shotProjectile.transform.rotation = projectileSpawnpoint.rotation;
-        shotProjectile.GetComponent<Rigidbody2D>().AddForce(transform.up * projectileSpeed, ForceMode2D.Impulse);
     }
 
 }

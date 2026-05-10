@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 6534252487992628154}
   - component: {fileID: 6996382441858372265}
   - component: {fileID: 4678603123923262118}
-  - component: {fileID: 3605485191675208407}
-  - component: {fileID: 7076502786308810128}
-  - component: {fileID: 9001864666929480950}
-  - component: {fileID: 7433948701798866015}
+  - component: {fileID: 4830008082243251305}
+  - component: {fileID: 8501273014727223954}
+  - component: {fileID: 4685109054220424930}
+  - component: {fileID: 1183051038271216663}
   m_Layer: 0
-  m_Name: SpeedPowerup
+  m_Name: HealthUpPowerup
   m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.459458, y: -0.265282, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1.8839}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -5383793579089033974, guid: 7e8affc10c7d4b0419b1b8f4f83ce554, type: 3}
+  m_Sprite: {fileID: 7355924345542590319, guid: 03dae4acc4068484fabfa45bf3df2899, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f619b49dd9b469e498527f5f16d43b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerupFunction
-  powerupType: 3
+  powerupType: 0
   sprite: {fileID: 6534252487992628154}
 --- !u!50 &4678603123923262118
 Rigidbody2D:
@@ -138,7 +138,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!95 &3605485191675208407
+--- !u!95 &4830008082243251305
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -160,7 +160,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7076502786308810128
+--- !u!114 &8501273014727223954
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pulse
   speed: 2
   amount: 0.1
---- !u!61 &9001864666929480950
+--- !u!61 &4685109054220424930
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,7 +220,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!225 &7433948701798866015
+--- !u!225 &1183051038271216663
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

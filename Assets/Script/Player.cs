@@ -37,7 +37,6 @@ public class Player : MonoBehaviour
     [Header("Projectiles & Firing")]
     [SerializeField] private UnityEngine.Transform projectileSpawnpoint;
     [SerializeField] private GameObject basicProjectile;
-    [SerializeField] private float basicProjectileSpeed;
     [SerializeField] private float primaryFireDelay;
     private bool primaryFireOnDelay;
 
@@ -151,8 +150,7 @@ public class Player : MonoBehaviour
                 if (collision.gameObject.CompareTag("EnemyProjectile"))
                 {
                     var projectileScript = collision.gameObject.GetComponent<BasicProjectile>();
-                    TakeDamage(projectileScript.damage);
-                    if (projectileScript.destroyOnContact) Destroy(collision.gameObject);
+                    projectileScript.ProjectileImpact(gameObject);
                 }
             }
             if (collision.gameObject.CompareTag("Powerup"))
@@ -194,7 +192,7 @@ public class Player : MonoBehaviour
 
     #region "Damage & Death"
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         if (shielded) health -= (int)(damage / 2);
         else health -= damage;
@@ -255,7 +253,6 @@ public class Player : MonoBehaviour
             shotProjectile.transform.position = projectileSpawnpoint.position;
             shotProjectile.transform.rotation = projectileSpawnpoint.rotation;
             shotProjectile.GetComponent<BasicProjectile>().damage = (int)(shotProjectile.GetComponent<BasicProjectile>().damage * damageMod);
-            shotProjectile.GetComponent<Rigidbody2D>().AddForce(transform.up * basicProjectileSpeed, ForceMode2D.Impulse);
 
             StartCoroutine("FireDelay");
         }

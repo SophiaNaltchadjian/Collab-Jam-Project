@@ -4,7 +4,13 @@ using UnityEngine;
 public class WaveShooterEnemy : EnemyBase
 {
     public Transform[] waveProjectileTransforms;
+    void Start()
+    {
+        health = maxHealth;
+        player = FindAnyObjectByType<Player>();
 
+        if (fires) InvokeRepeating("ShootProjectile", fireDelay / 1.5f, fireDelay);
+    }
     override public void ShootProjectile()
     {
         if (player != null) StartCoroutine("ProjectileWave");
@@ -21,9 +27,6 @@ public class WaveShooterEnemy : EnemyBase
                 var shotProjectile = Instantiate(projectile);
                 shotProjectile.transform.position = waveProjectileTransforms[i].position;
                 shotProjectile.transform.rotation = waveProjectileTransforms[i].rotation;
-                shotProjectile.GetComponent<Rigidbody2D>().AddForce(shotProjectile.transform.up * projectileSpeed, ForceMode2D.Impulse);
-
-
             }
             yield return new WaitForSeconds(0.25f);
         }
