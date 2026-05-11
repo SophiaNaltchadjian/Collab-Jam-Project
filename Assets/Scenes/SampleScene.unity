@@ -546,7 +546,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.29, y: 1.23, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -991,7 +991,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: -7790544929387226549, guid: 28d2de70aa60f084888a393e45ba3842, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1012,7 +1012,7 @@ Transform:
   m_GameObject: {fileID: 1463362358}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21, y: 1.18, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1194,9 +1194,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5311449140384708131, guid: 3c9cbefc6694c764da8eb6f82ee77ba6, type: 3}
     - target: {fileID: 676710794474671661, guid: 0ca257d6d2143ed4ca2d1ee01822ae2b, type: 3}
+      propertyPath: altFireDelay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 676710794474671661, guid: 0ca257d6d2143ed4ca2d1ee01822ae2b, type: 3}
       propertyPath: airplaneSprite
       value: 
       objectReference: {fileID: -2535977807786944098, guid: 86ab014d5c887464ea28d1d503869e64, type: 3}
+    - target: {fileID: 676710794474671661, guid: 0ca257d6d2143ed4ca2d1ee01822ae2b, type: 3}
+      propertyPath: altFireProjectiles.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 908346063175034927, guid: 0ca257d6d2143ed4ca2d1ee01822ae2b, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1383,14 +1391,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 710415897998019873, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 710415897998019873, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.98
-      objectReference: {fileID: 0}
     - target: {fileID: 4095830929882689780, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1431,42 +1431,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4754313219663140344, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 6.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754313219663140344, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.31
-      objectReference: {fileID: 0}
     - target: {fileID: 4838998005109363277, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
     - target: {fileID: 5509989754606765508, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
-      propertyPath: spawnableEnemies.Array.size
-      value: 4
+      propertyPath: altFirePowerups.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5509989754606765508, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
-      propertyPath: spawnableEnemies.Array.data[2].enemy
+      propertyPath: 'altFirePowerups.Array.data[0]'
       value: 
-      objectReference: {fileID: 609294104034626828, guid: 8d9505480a0d5a748b68e0ccd7a46dd8, type: 3}
+      objectReference: {fileID: 2850136763046905919, guid: f21f96323ec434e48869ab3c34c16592, type: 3}
     - target: {fileID: 5509989754606765508, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
-      propertyPath: spawnableEnemies.Array.data[3].enemy
+      propertyPath: 'altFirePowerups.Array.data[1]'
       value: 
-      objectReference: {fileID: 609294104034626828, guid: 0ef645e67bb1c3144af489ca13d69bba, type: 3}
-    - target: {fileID: 5509989754606765508, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
-      propertyPath: spawnableEnemies.Array.data[0].spawnChance
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5509989754606765508, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
-      propertyPath: spawnableEnemies.Array.data[2].spawnChance
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5509989754606765508, guid: c7638b61dd54ea241a0b73beccb10934, type: 3}
-      propertyPath: spawnableEnemies.Array.data[3].spawnChance
-      value: 20
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2850136763046905919, guid: ccbfb9e43d7d89a4a9564bc1cd0edc11, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

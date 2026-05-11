@@ -4,6 +4,7 @@ public class ExplodingProjectile : BasicProjectile
 {
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private float autoExplosionTime;
+    public int explosionDamage;
 
     private void Start()
     {
@@ -22,6 +23,7 @@ public class ExplodingProjectile : BasicProjectile
         var explosion = Instantiate(explosionPrefab);
         explosion.transform.position = transform.position;
         explosion.transform.rotation = transform.rotation;
+        explosion.GetComponent<AreaOfEffect>().damage = explosionDamage;
 
         Destroy(gameObject);
     }

@@ -41,9 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4041402310090093447}
   - component: {fileID: 3651046124054836591}
-  - component: {fileID: -3578460518133802853}
   - component: {fileID: -5828677793135976147}
   - component: {fileID: 9048080724569320271}
+  - component: {fileID: 6531605015869749720}
   m_Layer: 0
   m_Name: ExploderEnemy
   m_TagString: Enemy
@@ -127,42 +127,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &-3578460518133802853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 609294104034626828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3243548fe5e31574faae4d139d58f928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
-  player: {fileID: 0}
-  health: 0
-  maxHealth: 40
-  fires: 1
-  contactDamage: 15
-  fireDelay: 1
-  projectile: {fileID: 609294104034626828, guid: edee114827dde174297be850e220bae3, type: 3}
-  projectileSpawnpoint: {fileID: 265234982252116062}
-  playerTrackRot: 0
-  maxDistanceFromPlayer: 3
-  moveSpeed: 0.002
-  enemySprite: {fileID: 3651046124054836591}
-  defaultColor: {r: 0.5764706, g: 0.15294118, b: 0.15294118, a: 1}
-  damageColor: {r: 0.5188679, g: 0.12971698, b: 0.12971698, a: 1}
-  deathParticles: {fileID: 1533935279161675702}
-  droppedPowerups:
-  - powerup: {fileID: 3021733973201317891, guid: 02cbaf5d9175fe7458b05b08a0847abb, type: 3}
-    dropChance: 15
-  - powerup: {fileID: 3021733973201317891, guid: 50853f22f35f63443873fc0925c5b5dd, type: 3}
-    dropChance: 0
-  - powerup: {fileID: 3021733973201317891, guid: d43930df955629543a3f39c2f4cfe2a2, type: 3}
-    dropChance: 0
-  - powerup: {fileID: 3021733973201317891, guid: b78644cc9bd3eae4a8e1e1bd6f1f4538, type: 3}
-    dropChance: 10
 --- !u!50 &-5828677793135976147
 Rigidbody2D:
   serializedVersion: 5
@@ -226,6 +190,38 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &6531605015869749720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609294104034626828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511be383bab05f447bee032672d28655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZippyEnemy
+  player: {fileID: 0}
+  health: 0
+  maxHealth: 40
+  fires: 0
+  contactDamage: 20
+  fireDelay: 2.5
+  projectile: {fileID: 609294104034626828, guid: edee114827dde174297be850e220bae3, type: 3}
+  projectileSpawnpoint: {fileID: 265234982252116062}
+  playerTrackRot: 0
+  maxDistanceFromPlayer: 0
+  moveSpeed: 5
+  enemySprite: {fileID: 3651046124054836591}
+  defaultColor: {r: 0.5764706, g: 0.14901961, b: 0.14901961, a: 1}
+  damageColor: {r: 0.5, g: 0.1014151, b: 0.1014151, a: 1}
+  deathParticles: {fileID: 1533935279161675702}
+  droppedPowerups:
+  - powerup: {fileID: 3021733973201317891, guid: 02cbaf5d9175fe7458b05b08a0847abb, type: 3}
+    dropChance: 20
+  - powerup: {fileID: 3021733973201317891, guid: 50853f22f35f63443873fc0925c5b5dd, type: 3}
+    dropChance: 5
 --- !u!1001 &658805775683317949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -273,6 +269,18 @@ PrefabInstance:
     - target: {fileID: 1086885235489642894, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2048344389290000139, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.14901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 2048344389290000139, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.14901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 2048344389290000139, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.5764706
       objectReference: {fileID: 0}
     - target: {fileID: 3924540651389422373, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
       propertyPath: m_Name

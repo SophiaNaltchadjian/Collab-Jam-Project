@@ -6,7 +6,7 @@ public class AreaOfEffect : MonoBehaviour
 {
     [SerializeField] private float duration;
     [SerializeField] private SpriteRenderer sprite;
-    [SerializeField] private int damage;
+    public int damage;
     [SerializeField] private bool playerOwned;
     private float fadeTimer = 1;
     private List<GameObject> hitObjects = new();

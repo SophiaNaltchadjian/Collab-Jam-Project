@@ -9,6 +9,7 @@ TagManager:
   - PlayerProjectile
   - Powerup
   - AreaOfEffect
+  - AltFirePowerup
   layers:
   - Default
   - TransparentFX

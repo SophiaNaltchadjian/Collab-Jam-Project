@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class BasicProjectile : MonoBehaviour
 {
-    float xBounds = 8;
-    float yBounds = 6;
+    float xBounds = 9;
+    float yBounds = 7;
 
     public int damage;
     public float speed;

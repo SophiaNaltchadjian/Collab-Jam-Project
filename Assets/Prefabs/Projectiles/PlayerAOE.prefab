@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5901582233498902426}
   - component: {fileID: 5006012105483852366}
   m_Layer: 0
-  m_Name: EnemyAOE
+  m_Name: PlayerAOE
   m_TagString: AreaOfEffect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingOrder: -2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2747690628134850419, guid: 16037dbd798344f57a526d53d48f5ead, type: 3}
-  m_Color: {r: 0.754717, g: 0.16019939, b: 0.16019939, a: 1}
+  m_Color: {r: 1, g: 0.654902, b: 0.654902, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -172,4 +172,4 @@ MonoBehaviour:
   duration: 1
   sprite: {fileID: 3651046124054836591}
   damage: 30
-  playerOwned: 0
+  playerOwned: 1

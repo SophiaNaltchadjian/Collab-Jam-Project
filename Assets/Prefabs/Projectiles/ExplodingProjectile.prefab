@@ -170,7 +170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExplodingProjectile
   damage: 15
-  speed: 4
+  speed: 7
   destroyOnContact: 0
   explosionPrefab: {fileID: 609294104034626828, guid: 9f337267cd1a41344bf5d3b8063c5bc7, type: 3}
   autoExplosionTime: 1
+  explosionDamage: 30

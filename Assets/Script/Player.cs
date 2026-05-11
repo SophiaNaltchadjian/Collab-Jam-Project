@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using UnityEngine.Scripting.APIUpdating;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
+public enum AltFireType { None, Explosive, Laser, Blast }
+
 public class Player : MonoBehaviour
 {
     [SerializeField] private UIHandler uiHandler;
@@ -19,7 +21,7 @@ public class Player : MonoBehaviour
     bool isDashing;
     bool canDash = true;
     TrailRenderer trailRenderer;
-    float xBounds = 6.2f;
+    float xBounds = 7.75f;
     float yBounds = 4.5f;
     private Animator anim;
 
@@ -38,8 +40,11 @@ public class Player : MonoBehaviour
     [Header("Projectiles & Firing")]
     [SerializeField] private UnityEngine.Transform projectileSpawnpoint;
     [SerializeField] private GameObject basicProjectile;
+    [SerializeField] private GameObject[] altFireProjectiles;
     [SerializeField] private float primaryFireDelay;
     private bool primaryFireOnDelay;
+    [SerializeField] private float altFireDelay;
+    private bool altFireOnDelay;
 
     [Header("Damage & Death")]
     [SerializeField] private SpriteRenderer playerSprite;
@@ -55,7 +60,8 @@ public class Player : MonoBehaviour
     float damageUpDuration;
     float speedUpDuration;
 
-
+    [Header("AltFire")]
+    public AltFireType currAltFire = AltFireType.None;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -86,6 +92,7 @@ public class Player : MonoBehaviour
             return;
         }
         PrimaryFire();
+        AltFire();
     }
     private void Move()
     {
@@ -156,6 +163,11 @@ public class Player : MonoBehaviour
             if (collision.gameObject.CompareTag("Powerup"))
             {
                 PowerupCollect(collision.gameObject.GetComponent<PowerupFunction>());
+                Destroy(collision.gameObject);
+            }
+            if (collision.gameObject.CompareTag("AltFirePowerup"))
+            {
+                currAltFire = collision.GetComponent<AltFirePowerup>().altfire;
                 Destroy(collision.gameObject);
             }
         }
@@ -245,6 +257,8 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    #region "Firing"
+
     void PrimaryFire()
     {
         if (Input.GetMouseButton(0) && !primaryFireOnDelay)
@@ -257,6 +271,27 @@ public class Player : MonoBehaviour
             StartCoroutine("FireDelay");
         }
     }
+    void AltFire()
+    {
+        if (Input.GetMouseButton(1) && !altFireOnDelay)
+        {
+            int altProjectileNum = -1;
+
+            if (currAltFire == AltFireType.Explosive) altProjectileNum = 0;
+            else if (currAltFire == AltFireType.Laser) altProjectileNum = 1;
+            else if (currAltFire == AltFireType.Blast) altProjectileNum = 2;
+            else return;
+
+            var shotProjectile = Instantiate(altFireProjectiles[altProjectileNum]);
+            shotProjectile.transform.position = projectileSpawnpoint.position;
+            shotProjectile.transform.rotation = projectileSpawnpoint.rotation;
+            shotProjectile.GetComponent<BasicProjectile>().damage = (int)(shotProjectile.GetComponent<BasicProjectile>().damage * damageMod);
+            if (shotProjectile.GetComponent<ExplodingProjectile>()) shotProjectile.GetComponent<ExplodingProjectile>().explosionDamage = (int)(shotProjectile.GetComponent<ExplodingProjectile>().explosionDamage * damageMod);
+
+            StartCoroutine("AltFireDelay");
+        }
+    }
+
     IEnumerator FireDelay()
     {
         primaryFireOnDelay = true;
@@ -265,6 +300,17 @@ public class Player : MonoBehaviour
 
         primaryFireOnDelay = false;
     }
+
+    IEnumerator AltFireDelay()
+    {
+        altFireOnDelay = true;
+
+        yield return new WaitForSeconds(altFireDelay);
+
+        altFireOnDelay = false;
+    }
+
+    #endregion
 
     void PowerupCollect(PowerupFunction powerup)
     {

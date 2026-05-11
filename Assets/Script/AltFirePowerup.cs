@@ -2,15 +2,19 @@ using UnityEngine;
 
 public class AltFirePowerup : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public AltFireType altfire;
 
-    // Update is called once per frame
+    float yBounds = 8;
+
     void Update()
     {
-        
+        if (transform.position.y > yBounds)
+        {
+            Destroy(gameObject);
+        }
+        if (transform.position.y < -yBounds)
+        {
+            Destroy(gameObject);
+        }
     }
 }

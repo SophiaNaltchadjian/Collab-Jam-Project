@@ -99,6 +99,7 @@ public class EnemyBase : MonoBehaviour
                 {
                     var droppedPowerup = Instantiate(item.powerup);
                     droppedPowerup.transform.position = transform.position;
+                    return;
                 }
             }
         }

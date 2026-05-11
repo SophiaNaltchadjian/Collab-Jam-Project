@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1563308479979671061}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6, z: 0}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 2371596692226848113}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.35, y: 0, z: 0}
+  m_LocalPosition: {x: 9, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -120,9 +120,13 @@ MonoBehaviour:
   - {fileID: 609294104034626828, guid: 50530deb5bc52e648adffd6cc13c0147, type: 3}
   spawnableEnemies:
   - enemy: {fileID: 609294104034626828, guid: 4bab838ce98ccd94b955e2c31edace52, type: 3}
-    spawnChance: 60
+    spawnChance: 50
   - enemy: {fileID: 609294104034626828, guid: 50530deb5bc52e648adffd6cc13c0147, type: 3}
     spawnChance: 25
+  - enemy: {fileID: 609294104034626828, guid: 8d9505480a0d5a748b68e0ccd7a46dd8, type: 3}
+    spawnChance: 20
+  - enemy: {fileID: 609294104034626828, guid: 0ef645e67bb1c3144af489ca13d69bba, type: 3}
+    spawnChance: 20
 --- !u!1 &7190772038757564568
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +152,7 @@ Transform:
   m_GameObject: {fileID: 7190772038757564568}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -6, z: 0}
+  m_LocalPosition: {x: 0, y: -7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -179,7 +183,7 @@ Transform:
   m_GameObject: {fileID: 9187843779618486356}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.35, y: 0, z: 0}
+  m_LocalPosition: {x: -9, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

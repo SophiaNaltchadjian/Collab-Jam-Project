@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 31848986050105788}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.104, y: -0.266, z: 0}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3651046124054836591}
   - component: {fileID: -3578460518133802853}
   - component: {fileID: -5828677793135976147}
-  - component: {fileID: 9048080724569320271}
+  - component: {fileID: 4623619586281663015}
   m_Layer: 0
   m_Name: Basic Enemy
   m_TagString: Enemy
@@ -190,8 +190,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!58 &9048080724569320271
-CircleCollider2D:
+--- !u!61 &4623619586281663015
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -225,7 +225,17 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.9375, y: 1.0625}
+    newSize: {x: 0.9375, y: 1.0625}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.9375, y: 1.0625}
+  m_EdgeRadius: 0
 --- !u!1001 &658805775683317949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -273,6 +283,18 @@ PrefabInstance:
     - target: {fileID: 1086885235489642894, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2048344389290000139, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.8502581
+      objectReference: {fileID: 0}
+    - target: {fileID: 2048344389290000139, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8842629
+      objectReference: {fileID: 0}
+    - target: {fileID: 2048344389290000139, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.9339623
       objectReference: {fileID: 0}
     - target: {fileID: 3924540651389422373, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
       propertyPath: m_Name
