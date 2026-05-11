@@ -5,11 +5,11 @@ public class UIHandler : MonoBehaviour
 {
     [SerializeField] private Player player;
 
-    [SerializeField] private Image healthFill;
+    [SerializeField] private Slider healthFill;
 
     public void UpdateHealth()
     {
-        healthFill.fillAmount = (float)player.health / (float)player.maxHealth;
+        healthFill.value = player.health;
     }
     
 }

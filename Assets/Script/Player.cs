@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Scripting.APIUpdating;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -64,7 +65,6 @@ public class Player : MonoBehaviour
         health = maxHealth;
         anim = GetComponent<Animator>();
         playerSprite = GetComponent<SpriteRenderer>();
-        
     }
 
     // Update is called once per frame

@@ -360,10 +360,10 @@ TextureImporter:
       name: PaperAirPlaneAnimation_9
       rect:
         serializedVersion: 2
-        x: 598
-        y: 30
-        width: 21
-        height: 22
+        x: 597
+        y: 29
+        width: 23
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -382,10 +382,10 @@ TextureImporter:
       name: PaperAirPlaneAnimation_10
       rect:
         serializedVersion: 2
-        x: 662
-        y: 25
-        width: 21
-        height: 22
+        x: 661
+        y: 24
+        width: 23
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -404,10 +404,10 @@ TextureImporter:
       name: PaperAirPlaneAnimation_11
       rect:
         serializedVersion: 2
-        x: 715
-        y: 22
-        width: 43
-        height: 26
+        x: 714
+        y: 21
+        width: 45
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
