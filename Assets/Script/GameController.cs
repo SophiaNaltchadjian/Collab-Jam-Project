@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
+    public int creeperGenerations;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

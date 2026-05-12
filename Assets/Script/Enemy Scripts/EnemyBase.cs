@@ -58,8 +58,10 @@ public class EnemyBase : MonoBehaviour
         if (health == 0)
         {
             Death();
+         
         }
         else StartCoroutine(DamageStrobeEffect());
+  
     }
 
     IEnumerator DamageStrobeEffect()
@@ -84,9 +86,8 @@ public class EnemyBase : MonoBehaviour
     void Death()
     {
         PowerupCheck();
-
         ParticleCheck();
-        Destroy(gameObject);
+        Destroy(gameObject,0.1f);
     }
 
     void PowerupCheck()
