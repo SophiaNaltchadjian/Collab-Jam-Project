@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Color defaultColor;
     [SerializeField] private Color damageColor;
     [SerializeField] private ParticleSystem deathParticles;
+    [SerializeField] private GameController gameController;
 
     [Header("Powerups")]
     bool shielded;
@@ -76,6 +77,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         PowerupDurationCheck();
         PlayerBounds();
 
@@ -214,6 +216,7 @@ public class Player : MonoBehaviour
 
         if (health == 0)
         {
+            gameController.ShowGameOver();
             ParticleCheck();
             Destroy(gameObject);
         }

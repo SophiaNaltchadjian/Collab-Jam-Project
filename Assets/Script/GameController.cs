@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public int creeperGenerations;
+    public GameObject GameOverPanel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,5 +23,9 @@ public class GameController : MonoBehaviour
     public void LeaveGame()
     {
         Application.Quit();
+    }
+    public void ShowGameOver()
+    {
+        GameOverPanel.SetActive(true);
     }
 }
