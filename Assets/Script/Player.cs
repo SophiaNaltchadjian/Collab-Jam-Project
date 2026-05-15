@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     private bool mercyInvincibility;
 
     [Header("Projectiles & Firing")]
-    [SerializeField] private UnityEngine.Transform projectileSpawnpoint;
+    public UnityEngine.Transform projectileSpawnpoint;
     [SerializeField] private GameObject basicProjectile;
     [SerializeField] private GameObject[] altFireProjectiles;
     [SerializeField] private float primaryFireDelay;
@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
     }
     private void Dash()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && canDash)
+        if (Input.GetKeyDown(KeyCode.Space) && canDash)
         {
             StartCoroutine(DashCoroutine());
         }
@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
             }
             if (collision.gameObject.CompareTag("AltFirePowerup"))
             {
-                currAltFire = collision.GetComponent<AltFirePowerup>().altfire;
+                AltFireChange(collision.GetComponent<AltFirePowerup>().altfire);
                 Destroy(collision.gameObject);
             }
         }
@@ -285,8 +285,9 @@ public class Player : MonoBehaviour
             var shotProjectile = Instantiate(altFireProjectiles[altProjectileNum]);
             shotProjectile.transform.position = projectileSpawnpoint.position;
             shotProjectile.transform.rotation = projectileSpawnpoint.rotation;
-            shotProjectile.GetComponent<BasicProjectile>().damage = (int)(shotProjectile.GetComponent<BasicProjectile>().damage * damageMod);
-            if (shotProjectile.GetComponent<ExplodingProjectile>()) shotProjectile.GetComponent<ExplodingProjectile>().explosionDamage = (int)(shotProjectile.GetComponent<ExplodingProjectile>().explosionDamage * damageMod);
+            if (shotProjectile.GetComponent<BasicProjectile>()) shotProjectile.GetComponent<BasicProjectile>().damage = (int)(shotProjectile.GetComponent<BasicProjectile>().damage * damageMod);
+            else if (shotProjectile.GetComponent<AreaOfEffect>()) shotProjectile.GetComponent<AreaOfEffect>().damage = (int)(shotProjectile.GetComponent<AreaOfEffect>().damage * damageMod);
+            else if (shotProjectile.GetComponent<ExplodingProjectile>()) shotProjectile.GetComponent<ExplodingProjectile>().explosionDamage = (int)(shotProjectile.GetComponent<ExplodingProjectile>().explosionDamage * damageMod);
 
             StartCoroutine("AltFireDelay");
         }
@@ -308,6 +309,15 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(altFireDelay);
 
         altFireOnDelay = false;
+    }
+
+    public void AltFireChange(AltFireType type)
+    {
+        currAltFire = type;
+        if (currAltFire == AltFireType.None) altFireDelay = 0;
+        if (currAltFire == AltFireType.Explosive) altFireDelay = 5;
+        if (currAltFire == AltFireType.Laser) altFireDelay = 6;
+        if (currAltFire ==AltFireType.Blast) altFireDelay = 4;
     }
 
     #endregion

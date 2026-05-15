@@ -72,7 +72,7 @@ public class EnemyBase : MonoBehaviour
 
         enemySprite.color = defaultColor;
     }
-    void ParticleCheck()
+    public void ParticleCheck()
     {
         if (deathParticles != null)
         {
@@ -83,14 +83,14 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    void Death()
+    virtual public void Death()
     {
         PowerupCheck();
         ParticleCheck();
         Destroy(gameObject,0.1f);
     }
 
-    void PowerupCheck()
+    public void PowerupCheck()
     {
         if (droppedPowerups.Count > 0)
         {

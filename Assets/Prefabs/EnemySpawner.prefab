@@ -115,9 +115,6 @@ MonoBehaviour:
   - {fileID: 710415897998019873}
   - {fileID: 3010604413218721695}
   - {fileID: 4754313219663140344}
-  enemySpawnList:
-  - {fileID: 609294104034626828, guid: 4bab838ce98ccd94b955e2c31edace52, type: 3}
-  - {fileID: 609294104034626828, guid: 50530deb5bc52e648adffd6cc13c0147, type: 3}
   spawnableEnemies:
   - enemy: {fileID: 609294104034626828, guid: 4bab838ce98ccd94b955e2c31edace52, type: 3}
     spawnChance: 50
@@ -127,6 +124,12 @@ MonoBehaviour:
     spawnChance: 20
   - enemy: {fileID: 609294104034626828, guid: 0ef645e67bb1c3144af489ca13d69bba, type: 3}
     spawnChance: 20
+  - enemy: {fileID: 2937968632699526345, guid: 7a7cae1763eb264438cbab38719e060d, type: 3}
+    spawnChance: 50
+  altFirePowerups:
+  - {fileID: 2850136763046905919, guid: f21f96323ec434e48869ab3c34c16592, type: 3}
+  - {fileID: 2850136763046905919, guid: 768bf6a20a651714a91b8fcfa48bbdba, type: 3}
+  - {fileID: 2850136763046905919, guid: ccbfb9e43d7d89a4a9564bc1cd0edc11, type: 3}
 --- !u!1 &7190772038757564568
 GameObject:
   m_ObjectHideFlags: 0
