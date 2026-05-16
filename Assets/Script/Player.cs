@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //AudioMaster.AM.Sound(11);
         trailRenderer = GetComponent<TrailRenderer>();
         rb = GetComponent<Rigidbody2D>();
         health = maxHealth;
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour
     }
     private void Move()
     {
-        Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0); 
+        Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0).normalized; 
         transform.position += (movement * speed * Time.deltaTime) * speedMod;
     }
     private void Dash()
@@ -132,12 +133,20 @@ public class Player : MonoBehaviour
         {
             if (isOnAirplaneMode==false)
             {
+                if (AudioMaster.AM)
+                {
+                    AudioMaster.AM.Sound(11);
+                }
                 isOnAirplaneMode = true;
                 anim.SetTrigger("TurnIntoAirplane");
                 playerSprite.sprite = airplaneSprite;
             }
             else
             {
+                if (AudioMaster.AM)
+                {
+                    AudioMaster.AM.Sound(11);
+                }
                 isOnAirplaneMode = false;
                 anim.SetTrigger("TurnIntoEmail");
                 playerSprite.sprite = emailSprite;
@@ -208,14 +217,34 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (shielded) health -= (int)(damage / 2);
-        else health -= damage;
+        if (shielded)
+        {
+            health -= (int)(damage / 2);
+            if (AudioMaster.AM)
+            {
+                AudioMaster.AM.Sound(13);
+            }
+        }
+        else
+        {
+            health -= damage;
+            if (AudioMaster.AM)
+            {
+                AudioMaster.AM.Sound(14);
+            }
+        }
+
         health = Mathf.Clamp(health, 0, maxHealth);
 
         uiHandler.UpdateHealth();
 
         if (health == 0)
         {
+            if (AudioMaster.AM)
+            {
+                AudioMaster.AM.Death();
+                AudioMaster.AM.Sound(6);
+            }
             gameController.ShowGameOver();
             ParticleCheck();
             Destroy(gameObject);
@@ -266,6 +295,10 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && !primaryFireOnDelay)
         {
+            if (AudioMaster.AM)
+            {
+                AudioMaster.AM.Sound(3);
+            }
             var shotProjectile = Instantiate(basicProjectile);
             shotProjectile.transform.position = projectileSpawnpoint.position;
             shotProjectile.transform.rotation = projectileSpawnpoint.rotation;
@@ -285,6 +318,17 @@ public class Player : MonoBehaviour
             else if (currAltFire == AltFireType.Blast) altProjectileNum = 2;
             else return;
 
+            if (AudioMaster.AM)
+            {
+                if (altProjectileNum == 2)
+                {
+                    AudioMaster.AM.Sound(5);
+                }
+                else
+                {
+                    AudioMaster.AM.Sound(4);
+                }
+            }
             var shotProjectile = Instantiate(altFireProjectiles[altProjectileNum]);
             shotProjectile.transform.position = projectileSpawnpoint.position;
             shotProjectile.transform.rotation = projectileSpawnpoint.rotation;
@@ -335,11 +379,19 @@ public class Player : MonoBehaviour
         }
         else if (powerup.powerupType == PowerupFunction.PowerupType.Shield)
         {
+            if (AudioMaster.AM)
+            {
+                AudioMaster.AM.Sound(9);
+            }
             shielded = true;
             shieldDuration = 10f;
         }
         else if (powerup.powerupType == PowerupFunction.PowerupType.DamageUp)
         {
+            if (AudioMaster.AM)
+            {
+                AudioMaster.AM.Sound(8);
+            }
             if (damageUpDuration > 0)
             {
                 damageUpDuration = 10f;
@@ -351,12 +403,15 @@ public class Player : MonoBehaviour
         }
         else if (powerup.powerupType == PowerupFunction.PowerupType.SpeedUp)
         {
+            if (AudioMaster.AM)
+            {
+                AudioMaster.AM.Sound(10);
+            }
             if (speedUpDuration > 0)
             {
                 speedUpDuration = 10f;
                 return;
             }
-
             speedMod += 0.5f;
             speedUpDuration = 10f;
         }

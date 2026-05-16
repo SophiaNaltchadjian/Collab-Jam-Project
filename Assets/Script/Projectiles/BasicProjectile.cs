@@ -42,7 +42,14 @@ public class BasicProjectile : MonoBehaviour
 
     virtual public void ProjectileImpact(GameObject impactObject)
     {
-        if (impactObject.GetComponent<EnemyBase>()) impactObject.GetComponent<EnemyBase>().TakeDamage(damage);
+        if (impactObject.GetComponent<EnemyBase>())
+        {
+            if (AudioMaster.AM)
+            {
+                AudioMaster.AM.Sound(15);
+            }
+            impactObject.GetComponent<EnemyBase>().TakeDamage(damage);
+        }
         if (impactObject.GetComponent<Player>()) impactObject.GetComponent<Player>().TakeDamage(damage);
         if (destroyOnContact) Destroy(gameObject);
     }
