@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -3578460518133802853}
   - component: {fileID: -5828677793135976147}
   - component: {fileID: 9048080724569320271}
+  - component: {fileID: 6868156188966274949}
   m_Layer: 0
   m_Name: Chaser Enemy
   m_TagString: Enemy
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.1582, y: 0.8623, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 446392925848234291}
@@ -85,8 +86,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2135585597343286014, guid: eed45a33cd08446c8b88325cf82fc52f, type: 3}
-  m_Color: {r: 0.8980393, g: 0.87843144, b: 0, a: 1}
+  m_Sprite: {fileID: 2865906195106238846, guid: d876e379ca540ef498d062db23394cf8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -119,8 +120,8 @@ MonoBehaviour:
   maxDistanceFromPlayer: 0
   moveSpeed: 0.0033
   enemySprite: {fileID: 3651046124054836591}
-  defaultColor: {r: 0.8962264, g: 0.8800051, b: 0, a: 1}
-  damageColor: {r: 0.7924528, g: 0.77515036, b: 0, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  damageColor: {r: 0.735849, g: 0.24644002, b: 0.24644002, a: 1}
   deathParticles: {fileID: 1533935279161675702}
   droppedPowerups:
   - powerup: {fileID: 3021733973201317891, guid: 50853f22f35f63443873fc0925c5b5dd, type: 3}
@@ -190,6 +191,28 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!95 &6868156188966274949
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609294104034626828}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 12a499d5cb54f794d83947fb121085bd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &658805775683317949
 PrefabInstance:
   m_ObjectHideFlags: 0

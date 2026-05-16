@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -5828677793135976147}
   - component: {fileID: 9048080724569320271}
   - component: {fileID: 2649937514016745364}
+  - component: {fileID: -8947005026020318585}
   m_Layer: 0
   m_Name: Wave Projectile Enemy
   m_TagString: Enemy
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.1582, y: 0.8623, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 446392925848234291}
@@ -88,8 +89,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2135585597343286014, guid: eed45a33cd08446c8b88325cf82fc52f, type: 3}
-  m_Color: {r: 0.050980397, g: 0.8352942, b: 1, a: 1}
+  m_Sprite: {fileID: 2982641679572711729, guid: ae6af623f7fbf7247b44ffe2d4822136, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -185,8 +186,8 @@ MonoBehaviour:
   maxDistanceFromPlayer: 6
   moveSpeed: 0.0005
   enemySprite: {fileID: 3651046124054836591}
-  defaultColor: {r: 0.050980397, g: 0.8352942, b: 1, a: 1}
-  damageColor: {r: 0, g: 0.64712316, b: 0.7830189, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  damageColor: {r: 0.8207547, g: 0.20518868, b: 0.20518868, a: 1}
   deathParticles: {fileID: 1533935279161675702}
   droppedPowerups:
   - powerup: {fileID: 3021733973201317891, guid: d43930df955629543a3f39c2f4cfe2a2, type: 3}
@@ -197,6 +198,28 @@ MonoBehaviour:
   - {fileID: 1155908745979288316}
   - {fileID: 6146416451945651258}
   - {fileID: 7415092151258496435}
+--- !u!95 &-8947005026020318585
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609294104034626828}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 26e3dad4f51412b4a8786e958da31008, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7279358302488345772
 GameObject:
   m_ObjectHideFlags: 0
