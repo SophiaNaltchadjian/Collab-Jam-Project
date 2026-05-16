@@ -164,7 +164,7 @@ MonoBehaviour:
   - powerup: {fileID: 3021733973201317891, guid: b78644cc9bd3eae4a8e1e1bd6f1f4538, type: 3}
     dropChance: 30
   multiplied: 0
-  Enemy: {fileID: 2937968632699526345}
+  enemy: {fileID: 2937968632699526345}
   spawnPos1: {fileID: 1336165188124377821}
   spawnPos2: {fileID: 7389112283036786488}
 --- !u!50 &6352235157594622965

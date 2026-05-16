@@ -143,11 +143,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   uiHandler: {fileID: 1427530442741048824}
-  laserFunction: {fileID: 0}
   speed: 5
   dashSpeed: 15
   dashDuration: 0.1
-  dashCooldown: 0.1
+  dashCooldown: 3
   airplaneSprite: {fileID: -2535977807786944098, guid: 86ab014d5c887464ea28d1d503869e64, type: 3}
   emailSprite: {fileID: -5311449140384708131, guid: 3c9cbefc6694c764da8eb6f82ee77ba6, type: 3}
   health: 0
@@ -159,13 +158,14 @@ MonoBehaviour:
   altFireProjectiles:
   - {fileID: 3021733973201317891, guid: b153dc25dafc3b341b8fc52649811503, type: 3}
   - {fileID: 609294104034626828, guid: afaaedf592695b4409ab3a6a672e564b, type: 3}
-  - {fileID: 3021733973201317891, guid: b153dc25dafc3b341b8fc52649811503, type: 3}
+  - {fileID: 609294104034626828, guid: 6dc4cd6c4e597ba48aec67ad80a2cfba, type: 3}
   primaryFireDelay: 0.33
   altFireDelay: 0
   playerSprite: {fileID: 908346063175034927}
   defaultColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
   damageColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
   deathParticles: {fileID: 9086951288303688863}
+  gameController: {fileID: 0}
   currAltFire: 0
 --- !u!50 &875271378291735125
 Rigidbody2D:

@@ -11,6 +11,11 @@ public class WaveShooterEnemy : EnemyBase
 
         if (fires) InvokeRepeating("ShootProjectile", fireDelay / 1.5f, fireDelay);
     }
+    private void Update()
+    {
+        RotateToFacePlayer();
+        PlayerDistanceCheck();
+    }
     override public void ShootProjectile()
     {
         if (player != null) StartCoroutine("ProjectileWave");
