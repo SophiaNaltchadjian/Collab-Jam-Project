@@ -147,6 +147,7 @@ MonoBehaviour:
   dashSpeed: 15
   dashDuration: 0.1
   dashCooldown: 3
+  dashCooldownValue: 0
   airplaneSprite: {fileID: -2535977807786944098, guid: 86ab014d5c887464ea28d1d503869e64, type: 3}
   emailSprite: {fileID: -5311449140384708131, guid: 3c9cbefc6694c764da8eb6f82ee77ba6, type: 3}
   health: 0
@@ -161,11 +162,20 @@ MonoBehaviour:
   - {fileID: 609294104034626828, guid: 6dc4cd6c4e597ba48aec67ad80a2cfba, type: 3}
   primaryFireDelay: 0.33
   altFireDelay: 0
+  altFireOnDelay: 0
+  altFireDelayValue: 0
   playerSprite: {fileID: 908346063175034927}
   defaultColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
   damageColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
   deathParticles: {fileID: 9086951288303688863}
   gameController: {fileID: 0}
+  ItensCount: 0
+  item: {fileID: 2728899532878087316, guid: 470934bcf9a31444c96ef7562f9d0000, type: 3}
+  itemPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   currAltFire: 0
 --- !u!50 &875271378291735125
 Rigidbody2D:
@@ -370,14 +380,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5398096899135450999}
     m_Modifications:
+    - target: {fileID: 1137090769718154797, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2168661481223556750, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3676227215444472661, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 3903152952062030182, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
+      propertyPath: myPlayer
+      value: 
+      objectReference: {fileID: 676710794474671661}
     - target: {fileID: 3950901699775102291, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -458,10 +472,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5326564054778564415, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6186453881126317524, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -470,49 +480,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6347344118106347671, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 242
-      objectReference: {fileID: 0}
-    - target: {fileID: 6347344118106347671, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -164
-      objectReference: {fileID: 0}
     - target: {fileID: 6511428704400321715, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 676710794474671661}
-    - target: {fileID: 6511428704400321715, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
-      propertyPath: healthFill
-      value: 
-      objectReference: {fileID: 3100398259661475179}
+    - target: {fileID: 6740893822331587644, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6740893822331587644, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6867018114009930323, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
       propertyPath: m_Name
       value: UI Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6867018114009930323, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7103431695942960160, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
-      propertyPath: m_Value
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7103431695942960160, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
-      propertyPath: m_MaxValue
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775768883398968750, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -28.839966
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775768883398968750, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 27.649994
-      objectReference: {fileID: 0}
-    - target: {fileID: 8997794449404887756, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -530,17 +512,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa285868f8e6e14e8dce167a1f0c040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIHandler
---- !u!114 &3100398259661475179 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7103431695942960160, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}
-  m_PrefabInstance: {fileID: 5301483018621471051}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!224 &9171240472451363864 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3950901699775102291, guid: ea405d7d40feee040bd99eeb004683d8, type: 3}

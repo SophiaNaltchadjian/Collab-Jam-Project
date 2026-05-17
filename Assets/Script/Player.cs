@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     public float dashSpeed = 20f;
     public float dashDuration = 0.1f;
     public float dashCooldown = 0.1f;
+    [HideInInspector] public float dashCooldownValue = 1;
+    private bool dashCooldownEnabled;
     bool isDashing;
     bool canDash = true;
     TrailRenderer trailRenderer;
@@ -43,8 +45,9 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject[] altFireProjectiles;
     [SerializeField] private float primaryFireDelay;
     private bool primaryFireOnDelay;
-    [SerializeField] private float altFireDelay;
-    private bool altFireOnDelay;
+    public float altFireDelay;
+    public bool altFireOnDelay;
+    [HideInInspector] public float altFireDelayValue;
 
     [Header("Damage & Death")]
     [SerializeField] private SpriteRenderer playerSprite;
@@ -94,7 +97,9 @@ public class Player : MonoBehaviour
                 AudioMaster.AM.Sound(12);
             }
         }
+        if (dashCooldownEnabled) DashCooldownCheck();
         PowerupDurationCheck();
+        AltFireDurationCheck();
         PlayerBounds();
 
         if (isDashing)
@@ -128,6 +133,8 @@ public class Player : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
+        dashCooldownValue = 0f;
+        uiHandler.UpdateDash();
 
         trailRenderer.emitting = true;
 
@@ -139,9 +146,23 @@ public class Player : MonoBehaviour
         rb.linearVelocity = new Vector2(0f,0f);
         isDashing = false;
         trailRenderer.emitting = false;
-        yield return new WaitForSeconds(dashCooldown);
-        canDash = true;  
+        dashCooldownEnabled = true;
     }
+    public void DashCooldownCheck()
+    {
+        if (dashCooldownValue < 1)
+        {
+            dashCooldownValue += Time.deltaTime / dashCooldown;
+            dashCooldownValue = Mathf.Clamp(dashCooldownValue, 0, 1);
+            uiHandler.UpdateDash();
+            if (dashCooldownValue == 1) 
+            {
+                canDash = true;
+                dashCooldownEnabled=false;
+            }
+        }
+    }
+
     private void TurnIntoAirplane()
     {
         if (Input.GetKeyDown(KeyCode.E) )
@@ -197,7 +218,6 @@ public class Player : MonoBehaviour
                 {
                     AudioMaster.AM.Sound(9);
                 }
-                altFireOnDelay = false; //picking up alt power up should refresh alt fire
                 AltFireChange(collision.GetComponent<AltFirePowerup>().altfire);
                 Destroy(collision.gameObject);
             }
@@ -379,7 +399,7 @@ public class Player : MonoBehaviour
             else if (shotProjectile.GetComponent<AreaOfEffect>()) shotProjectile.GetComponent<AreaOfEffect>().damage = (int)(shotProjectile.GetComponent<AreaOfEffect>().damage * damageMod);
             else if (shotProjectile.GetComponent<ExplodingProjectile>()) shotProjectile.GetComponent<ExplodingProjectile>().explosionDamage = (int)(shotProjectile.GetComponent<ExplodingProjectile>().explosionDamage * damageMod);
 
-            StartCoroutine("AltFireDelay");
+            AltFireDelay();
         }
     }
 
@@ -392,22 +412,50 @@ public class Player : MonoBehaviour
         primaryFireOnDelay = false;
     }
 
-    IEnumerator AltFireDelay()
+    void AltFireDelay()
     {
+        altFireDelayValue = 0;
+        uiHandler.UpdateAltFire();
+
         altFireOnDelay = true;
-
-        yield return new WaitForSeconds(altFireDelay);
-
-        altFireOnDelay = false;
     }
 
     public void AltFireChange(AltFireType type)
     {
         currAltFire = type;
-        if (currAltFire == AltFireType.None) altFireDelay = 0;
-        if (currAltFire == AltFireType.Explosive) altFireDelay = 5;
-        if (currAltFire == AltFireType.Laser) altFireDelay = 6;
-        if (currAltFire ==AltFireType.Blast) altFireDelay = 4;
+        if (currAltFire == AltFireType.None)
+        {
+            altFireDelay = 0;
+        }
+        if (currAltFire == AltFireType.Explosive)
+        {
+            altFireDelay = 5;
+            uiHandler.AltFireIconToggle(0);
+        }
+        if (currAltFire == AltFireType.Laser) 
+        {
+            altFireDelay = 6;
+            uiHandler.AltFireIconToggle(1);
+        }
+        if (currAltFire == AltFireType.Blast) 
+        {
+            altFireDelay = 4;
+            uiHandler.AltFireIconToggle(2);
+        }
+        altFireDelayValue = 1;
+        uiHandler.UpdateAltFire();
+        altFireOnDelay = false; //picking up alt power up should refresh alt fire
+    }
+
+    public void AltFireDurationCheck()
+    {
+        if (altFireDelayValue < 1)
+        {
+            altFireDelayValue += Time.deltaTime / altFireDelay;
+            altFireDelayValue = Mathf.Clamp(altFireDelayValue, 0, 1);
+            uiHandler.UpdateAltFire();
+            if (altFireDelayValue == 1) altFireOnDelay = false;
+        }
     }
 
     #endregion
@@ -432,6 +480,7 @@ public class Player : MonoBehaviour
             }
             shielded = true;
             shieldDuration = 10f;
+            uiHandler.PowerupIconToggle(1, true);
         }
         else if (powerup.powerupType == PowerupFunction.PowerupType.DamageUp)
         {
@@ -447,6 +496,7 @@ public class Player : MonoBehaviour
 
             damageMod += 0.5f;
             damageUpDuration = 10f;
+            uiHandler.PowerupIconToggle(0, true);
         }
         else if (powerup.powerupType == PowerupFunction.PowerupType.SpeedUp)
         {
@@ -461,6 +511,7 @@ public class Player : MonoBehaviour
             }
             speedMod += 0.5f;
             speedUpDuration = 10f;
+            uiHandler.PowerupIconToggle(2, true);
         }
     }
 
@@ -470,19 +521,31 @@ public class Player : MonoBehaviour
         {
             shieldDuration -= Time.deltaTime;
             shieldDuration = Mathf.Clamp(shieldDuration, 0, 30);
-            if (shieldDuration == 0) shielded=false;
+            if (shieldDuration == 0) 
+            {
+                shielded = false;
+                uiHandler.PowerupIconToggle(1, false);
+            }
         }
         if (damageUpDuration > 0)
         {
             damageUpDuration -= Time.deltaTime;
             damageUpDuration = Mathf.Clamp(damageUpDuration, 0, 30);
-            if (damageUpDuration == 0) damageMod -= 0.5f;
+            if (damageUpDuration == 0) 
+            {
+                damageMod -= 0.5f;
+                uiHandler.PowerupIconToggle(0, false);
+            }
         }
         if (speedUpDuration > 0)
         {
             speedUpDuration -= Time.deltaTime;
             speedUpDuration = Mathf.Clamp(speedUpDuration, 0, 30);
-            if (speedUpDuration == 0) speedMod -= 0.5f;
+            if (speedUpDuration == 0) 
+            {
+                speedMod -= 0.5f;
+                uiHandler.PowerupIconToggle(2, false);
+            }
         }
     }
 

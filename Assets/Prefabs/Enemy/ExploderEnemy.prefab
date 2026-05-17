@@ -214,7 +214,7 @@ MonoBehaviour:
   maxDistanceFromPlayer: 0
   moveSpeed: 5
   enemySprite: {fileID: 3651046124054836591}
-  defaultColor: {r: 0.5764706, g: 0.14901961, b: 0.14901961, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 0.5, g: 0.1014151, b: 0.1014151, a: 1}
   deathParticles: {fileID: 1533935279161675702}
   droppedPowerups:
@@ -272,15 +272,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2048344389290000139, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.14901961
+      value: 0.46274513
       objectReference: {fileID: 0}
     - target: {fileID: 2048344389290000139, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.14901961
+      value: 0.75294125
       objectReference: {fileID: 0}
     - target: {fileID: 2048344389290000139, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.5764706
+      value: 0.9960785
       objectReference: {fileID: 0}
     - target: {fileID: 3924540651389422373, guid: ea907111b8ab1b94794dc306f52f6a79, type: 3}
       propertyPath: m_Name
