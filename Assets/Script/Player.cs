@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Color damageColor;
     [SerializeField] private ParticleSystem deathParticles;
     [SerializeField] private GameController gameController;
-    private int ItensCount;
+    public int ItensCount;
 
     [Header("Powerups")]
     bool shielded;
@@ -71,7 +71,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnItens());
-        //AudioMaster.AM.Sound(11);
         trailRenderer = GetComponent<TrailRenderer>();
         rb = GetComponent<Rigidbody2D>();
         health = maxHealth;
@@ -196,9 +195,9 @@ public class Player : MonoBehaviour
             {
                 if (AudioMaster.AM)
                 {
-                    AudioMaster.AM.Sound(2);
+                    AudioMaster.AM.Sound(9);
                 }
-                altFireOnDelay = false; //picking up power up should refresh ammo?
+                altFireOnDelay = false; //picking up alt power up should refresh alt fire
                 AltFireChange(collision.GetComponent<AltFirePowerup>().altfire);
                 Destroy(collision.gameObject);
             }
@@ -267,6 +266,10 @@ public class Player : MonoBehaviour
         }
         else
         {
+            if (!isOnAirplaneMode)
+            {
+                damage = (int) (damage * 0.75f); //giving email mode some damage reduction
+            }
             health -= damage;
             if (AudioMaster.AM)
             {
