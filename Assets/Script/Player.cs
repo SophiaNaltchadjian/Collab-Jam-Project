@@ -1,6 +1,6 @@
 using System.Collections;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Scripting.APIUpdating;
@@ -87,10 +87,11 @@ public class Player : MonoBehaviour
 
         if (ItensCount==3)
         {
-            ItensCount = 0;
+            ItensCount = 4;
             health = maxHealth;
             Debug.Log("Win");
-            gameController.ShowWinScreen();
+            Invoke("WinGame", 0.15f);
+            //gameController.ShowWinScreen();
             if (AudioMaster.AM)
             {
                 AudioMaster.AM.StopMusic();
@@ -513,6 +514,11 @@ public class Player : MonoBehaviour
             speedUpDuration = 10f;
             uiHandler.PowerupIconToggle(2, true);
         }
+    }
+
+    void WinGame()
+    {
+        gameController.ShowWinScreen();
     }
 
     void PowerupDurationCheck()

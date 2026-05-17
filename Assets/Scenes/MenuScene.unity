@@ -310,7 +310,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.0010123, y: 0.00015829}
-  m_SizeDelta: {x: 1080, y: 587.05}
+  m_SizeDelta: {x: 1271.4, y: 741.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1140921713
 MonoBehaviour:
@@ -513,6 +513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameController
   creeperGenerations: 0
   GameOverPanel: {fileID: 0}
+  WinScreenPanel: {fileID: 0}
 --- !u!4 &1509748566
 Transform:
   m_ObjectHideFlags: 0
