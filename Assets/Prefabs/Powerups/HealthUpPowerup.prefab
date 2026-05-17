@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8501273014727223954}
   - component: {fileID: 4685109054220424930}
   - component: {fileID: 1183051038271216663}
+  - component: {fileID: 2372679704192009658}
   m_Layer: 0
   m_Name: HealthUpPowerup
   m_TagString: Powerup
@@ -232,3 +233,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &2372679704192009658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3021733973201317891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696447589277b2747ad051947134f642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powerupinbounds
+  negativeXBounds: -7.5
+  negativeYBounds: -3
+  positiveXBounds: 7.5
+  positiveYBounds: 4.4

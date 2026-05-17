@@ -8,7 +8,7 @@ public class AudioMaster : MonoBehaviour
 
     public static AudioMaster AM;
 
-    public float volume = 5;
+    public float volume = 7;
 
     private float musictimer = 0;
 
@@ -63,6 +63,7 @@ public class AudioMaster : MonoBehaviour
     public void StopMusic()
     {
         song1.Stop();
+        musictimer = 3;
     }
 
     public void Death()

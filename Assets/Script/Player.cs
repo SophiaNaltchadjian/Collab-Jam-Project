@@ -21,8 +21,8 @@ public class Player : MonoBehaviour
     bool isDashing;
     bool canDash = true;
     TrailRenderer trailRenderer;
-    float xBounds = 7.75f;
-    float yBounds = 4.5f;
+    float xBounds = 7.85f;
+    float yBounds = 4.6f;
     private Animator anim;
 
     [Header("Switch modes")]
@@ -85,8 +85,15 @@ public class Player : MonoBehaviour
 
         if (ItensCount==3)
         {
+            ItensCount = 0;
+            health = maxHealth;
             Debug.Log("Win");
             gameController.ShowWinScreen();
+            if (AudioMaster.AM)
+            {
+                AudioMaster.AM.StopMusic();
+                AudioMaster.AM.Sound(12);
+            }
         }
         PowerupDurationCheck();
         PlayerBounds();
@@ -187,6 +194,10 @@ public class Player : MonoBehaviour
             }
             if (collision.gameObject.CompareTag("AltFirePowerup"))
             {
+                if (AudioMaster.AM)
+                {
+                    AudioMaster.AM.Sound(2);
+                }
                 AltFireChange(collision.GetComponent<AltFirePowerup>().altfire);
                 Destroy(collision.gameObject);
             }
@@ -401,6 +412,10 @@ public class Player : MonoBehaviour
     {
         if (powerup.powerupType == PowerupFunction.PowerupType.HealthUp)
         {
+            if (AudioMaster.AM)
+            {
+                AudioMaster.AM.Sound(7);
+            }
             health += 25;
             health = Mathf.Clamp(health, 0, maxHealth);
             uiHandler.UpdateHealth();
