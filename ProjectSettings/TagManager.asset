@@ -10,6 +10,7 @@ TagManager:
   - Powerup
   - AreaOfEffect
   - AltFirePowerup
+  - Collectable
   layers:
   - Default
   - TransparentFX

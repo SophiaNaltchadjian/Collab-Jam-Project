@@ -5,6 +5,7 @@ public class GameController : MonoBehaviour
 {
     public int creeperGenerations;
     public GameObject GameOverPanel;
+    public GameObject WinScreenPanel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,6 +21,10 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
     public void LeaveGame()
     {
         Application.Quit();
@@ -27,5 +32,10 @@ public class GameController : MonoBehaviour
     public void ShowGameOver()
     {
         GameOverPanel.SetActive(true);
+    }
+    public void ShowWinScreen()
+    {
+        WinScreenPanel.SetActive(true);
+        AudioMaster.AM.Sound(14);
     }
 }

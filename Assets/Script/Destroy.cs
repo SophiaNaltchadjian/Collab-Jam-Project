@@ -19,4 +19,8 @@ public class Destroy : MonoBehaviour
         gameController.StartGame();
         Destroy(gameObject);
     }
+    public void GoToMenu()
+    {
+        gameController.GoToMenu();
+    }
 }

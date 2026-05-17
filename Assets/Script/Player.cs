@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Color damageColor;
     [SerializeField] private ParticleSystem deathParticles;
     [SerializeField] private GameController gameController;
+    private int ItensCount;
 
     [Header("Powerups")]
     bool shielded;
@@ -60,6 +61,8 @@ public class Player : MonoBehaviour
     float shieldDuration;
     float damageUpDuration;
     float speedUpDuration;
+    [SerializeField] private GameObject item;
+    public GameObject[] itemPositions;
 
     [Header("AltFire")]
     public AltFireType currAltFire = AltFireType.None;
@@ -67,6 +70,7 @@ public class Player : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        StartCoroutine(SpawnItens());
         //AudioMaster.AM.Sound(11);
         trailRenderer = GetComponent<TrailRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -78,7 +82,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
+        if (ItensCount==3)
+        {
+            Debug.Log("Win");
+            gameController.ShowWinScreen();
+        }
         PowerupDurationCheck();
         PlayerBounds();
 
@@ -181,6 +190,25 @@ public class Player : MonoBehaviour
                 AltFireChange(collision.GetComponent<AltFirePowerup>().altfire);
                 Destroy(collision.gameObject);
             }
+            if (collision.gameObject.CompareTag("Collectable"))
+            {
+                ItensCount++;
+                if (AudioMaster.AM)
+                {
+                    AudioMaster.AM.Sound(9);
+                }
+                Debug.Log("Collected");
+                Destroy(collision.gameObject);
+            }
+        }
+    }
+    IEnumerator SpawnItens()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(15f);
+            int posNumber = Random.Range(0, itemPositions.Length);
+            Instantiate(item, itemPositions[posNumber].transform.position, Quaternion.identity);
         }
     }
 
