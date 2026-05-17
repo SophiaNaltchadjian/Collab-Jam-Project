@@ -198,6 +198,7 @@ public class Player : MonoBehaviour
                 {
                     AudioMaster.AM.Sound(2);
                 }
+                altFireOnDelay = false; //picking up power up should refresh ammo?
                 AltFireChange(collision.GetComponent<AltFirePowerup>().altfire);
                 Destroy(collision.gameObject);
             }
